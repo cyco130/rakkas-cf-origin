@@ -3,6 +3,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import react from "@vitejs/plugin-react";
 import rakkas from "rakkasjs/vite-plugin";
 import fs from "node:fs";
+import { cfAdapter } from "./plugins/cf-adapter";
 
 export default defineConfig((env) => ({
   define: {
@@ -17,6 +18,7 @@ export default defineConfig((env) => ({
     tsconfigPaths(),
     react(),
     rakkas(),
+    process.env.RAKKAS_BUILD_TYPE === "edge" && cfAdapter(),
     {
       name: "move-build",
       apply: "build",

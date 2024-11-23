@@ -1,5 +1,5 @@
 {
-  "name": "-TODO-",
+  "name": "rakkas-cf-origin",
   "type": "module",
   "private": true,
   "scripts": {
@@ -8,7 +8,7 @@
     "build:edge": "RAKKAS_BUILD_TYPE=edge rakkas build",
     "build:origin": "RAKKAS_BUILD_TYPE=origin rakkas build",
     "start": "pnpm run /^start:/",
-    "start:edge": "PORT=3000 node dist/edge/index.js",
+    "start:edge": "wrangler dev dist/edge/entry-cf.js --port 3000",
     "start:origin": "PORT=3001 node dist/origin/index.js",
     "format": "prettier --write --ignore-unknown src",
     "test": "pnpm test:typecheck && pnpm test:format && pnpm test:lint",
@@ -17,6 +17,7 @@
     "test:lint": "eslint . --ignore-pattern dist"
   },
   "devDependencies": {
+    "@hattip/adapter-cloudflare-workers": "0.0.47",
     "@rakkasjs/eslint-config": "0.7.0-next.49",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -26,7 +27,8 @@
     "rakkasjs": "0.7.0-next.49",
     "typescript": "^5.5.4",
     "vite": "^5.4.0",
-    "vite-tsconfig-paths": "^5.0.1"
+    "vite-tsconfig-paths": "^5.0.1",
+    "wrangler": "^3.90.0"
   },
   "dependencies": {
     "react": "^18.3.1",
